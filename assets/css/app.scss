@@ -3,23 +3,9 @@
 @import "bootstrap";
 
 body {
-    font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
-    text-align: center;
-}
-
-ol, ul {
-    padding-left: 30px;
-}
-
-.board-row:after {
-    clear: both;
-    content: "";
-    display: table;
-}
-
-.status {
-    margin-bottom: 10px;
+    width: 35em;
+    margin: 0 auto;
+    font-family: Tahoma, Verdana, Arial, sans-serif;
 }
 
 .tile {
@@ -58,16 +44,11 @@ ol, ul {
     pointer-events: none;
 }
 
-/*.kbd-navigation .tile:focus {*/
-/*background: white;*/
-/*}*/
-
-.game {
-    display: flex;
-    flex-direction: row;
+.tile-table {
+    margin-left: 23%;
 }
 
-.game-info {
-    margin-left: 20px;
+.game-board {
+    text-align: center;
 }
 
