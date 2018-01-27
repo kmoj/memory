@@ -11,6 +11,21 @@ body {
 h1 { text-align: center; }
 
 .tile {
+       background: black;
+       border: 1px solid #999;
+       float: left;
+       font-size: 24px;
+       font-weight: bold;
+       height: 50px;
+       margin:10px;
+       padding: 10px;
+       text-align: center;
+       width: 50px;
+       user-select: none;
+       color: transparent;
+   }
+
+.tile2 {
     background: black;
     border: 1px solid #999;
     float: left;
@@ -25,8 +40,13 @@ h1 { text-align: center; }
     color: transparent;
 }
 
-.tile:focus {
+.tile2:disabled {
     background: white;
+    color: black;
+}
+
+.tile:disabled {
+    background: black;
     color: black;
 }
 

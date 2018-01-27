@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import { Button } from 'reactstrap';
 
 export default function run_demo(root) {
-  ReactDOM.render(<Game side={0}/>, root);
+  ReactDOM.render(<Game/>, root);
 }
 
 class Tile extends React.Component {
+
     render() {
         return (
-            <button className= {this.props.correctness? "tile-correct":"tile"} onClick={() => this.props.onClick()}>
+            <button className= {this.props.correctness ? "tile-correct": this.props.isClicked? "tile2":"tile"}
+                    onClick={() => this.props.onClick()}
+                    disabled={this.props.isDisabled}>
                 {this.props.value}
             </button>
         )
@@ -34,6 +37,8 @@ class Board extends React.Component {
         this.state = {
             letters: letters,
             lastClicked: null,
+            isDisabled:false,
+            isClicked:Array(16).fill(false),
             corrects: Array(16).fill(false),
             scores: 0,
         };
@@ -48,27 +53,47 @@ class Board extends React.Component {
             this.setState({
                 letters: this.state.letters,
                 lastClicked: i,
+                isDisabled: this.state.isDisabled,
+                isClicked: this.state.isClicked,
                 corrects: corrects,
                 scores: this.state.scores + 10,
             });
 
         } else {
+            let clicked = this.state.isClicked.slice();
+            clicked[i] = true;
             this.setState({
                 letters: this.state.letters,
                 lastClicked: i,
+                isDisabled: true,
+                isClicked: clicked,
                 correct: this.state.correct,
                 scores: this.state.scores - 1,
             });
+
+            setTimeout(()=>{
+                clicked = Array(16).fill(false);
+                this.setState({
+                    letters: this.state.letters,
+                    lastClicked: i,
+                    isDisabled: false,
+                    isClicked: clicked,
+                    correct: this.state.correct,
+                    scores: this.state.scores,
+                });
+            },1000);
         }
     }
 
     handleRestartClick() {
 
         let shuffledLetters = this.state.letters;
-        shuffledLetters.sort(function(){return Math.random()-0.5;});
+        shuffledLetters.sort(()=>{return Math.random()-0.5;});
         this.setState({
             letters: shuffledLetters,
             lastClicked: null,
+            isDisabled: this.state.isDisabled,
+            isClicked: this.state.isClicked,
             corrects: Array(16).fill(false),
             scores: 0,
         });
@@ -77,6 +102,8 @@ class Board extends React.Component {
     renderTile(i) {
         return <Tile value={this.state.letters[i]}
                      onClick={() => this.handleClick(i)}
+                     isDisabled={this.state.isDisabled}
+                     isClicked={this.state.isClicked[i]}
                      correctness={this.state.corrects[i]}/>;
     }
 
