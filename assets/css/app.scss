@@ -2,5 +2,72 @@
 
 @import "bootstrap";
 
-.side { padding: 4ex; text-align: center; }
-h1 { text-align: center; }
+body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+    text-align: center;
+}
+
+ol, ul {
+    padding-left: 30px;
+}
+
+.board-row:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.status {
+    margin-bottom: 10px;
+}
+
+.tile {
+    background: black;
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    height: 50px;
+    margin:10px;
+    padding: 10px;
+    text-align: center;
+    width: 50px;
+    user-select: none;
+    color: transparent;
+}
+
+.tile:focus {
+    background: white;
+    color: black;
+}
+
+.tile-correct {
+    background: white;
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    height: 50px;
+    margin:10px;
+    padding: 10px;
+    text-align: center;
+    width: 50px;
+    user-select: none;
+    color: green;
+    pointer-events: none;
+}
+
+/*.kbd-navigation .tile:focus {*/
+/*background: white;*/
+/*}*/
+
+.game {
+    display: flex;
+    flex-direction: row;
+}
+
+.game-info {
+    margin-left: 20px;
+}
+
