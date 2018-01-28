@@ -6,6 +6,22 @@ export default function run_demo(root) {
   ReactDOM.render(<Game/>, root);
 }
 
+// App state for Memory is:
+// {
+//     letters: Char Array,   // letter A-H
+//     lastClicked: int,      // keep track of the index of last
+//                            // clicked letter in the array
+//     isDisabled: boolean,   // once a tile is clicked, all tile
+//                            // button is disabled for 1s
+//     isClicked: boolean Array, // the tile being clicked is set to true
+//                               // used to change its ccs class
+//     corrects: boolean Array,  // tiles matched are set to true
+//                               // used to change its ccs class
+//     scores: int,           // tracking the scores, every click on the
+//                            // tile will deduct 1 point, find a match
+//                            // will get 10 points.
+// }
+
 class Tile extends React.Component {
 
     render() {
@@ -29,7 +45,7 @@ class RestartButton extends React.Component {
     }
 }
 
-class Board extends React.Component {
+class Game extends React.Component {
 
     constructor() {
         var letters = ['A','B','D','G','E','F','H','C','A','B','D','E','F','H','G','C'];
@@ -150,21 +166,10 @@ class Board extends React.Component {
                     </table>
                 </div>
                 <div>{this.renderRestartButton()}</div>
-                <p>Rules: every click on the tile will deduct 1 points from the totall score.<br/>
-                    find a match will get 10 points.</p>
+                <p>Rules: every click on the tile will deduct 1 points from the score.<br/>
+                    Find a match will get 10 points.</p>
 
             </div>
         );
     }
 }
-
-class Game extends React.Component {
-    render() {
-        return (
-            <div className="game">
-                <Board />
-            </div>
-        );
-    }
-}
-
